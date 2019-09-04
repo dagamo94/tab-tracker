@@ -8,10 +8,14 @@ app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/status', (req,res) => {
+const PORT = process.env.PORT || 8081;
+
+app.post('/register', (req,res) => {
     res.send({
-        message: "Hola Mundo!"
+        message: `Hello ${req.body.email}. Your user was resgistered!`
     })
 });
 
-app.listen(process.env.PORT || 8081);
+app.listen(PORT, () => {
+    console.log(`Server is now running on port: ${PORT}`);
+});
